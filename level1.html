@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Level 1 — Snapshot</h2>
+<table>
+  <tr><th>Timeframe covered</th><td>{{ min_year }} – {{ max_year }}</td></tr>
+  <tr><th>Total vaccines (doses)</th><td>{{ "{:,.0f}".format(total_doses or 0) }}</td></tr>
+  <tr><th>Total reported cases</th><td>{{ "{:,.0f}".format(total_cases or 0) }}</td></tr>
+  <tr><th>Diseases represented</th><td>{{ diseases }}</td></tr>
+</table>
+{% endblock %}

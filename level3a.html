@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Level 3A — Biggest Improvements in Vaccination Rate</h2>
+
+<form method="get" class="filters">
+  Antigen: <input name="antigen" value="{{ antigen }}">
+  Start: <input name="start" type="number" value="{{ start_year }}">
+  End: <input name="end" type="number" value="{{ end_year }}">
+  Top N: <input name="top" type="number" value="{{ top_n }}">
+  <button type="submit">Run</button>
+</form>
+
+<table>
+  <tr>
+    <th>Country</th><th>Region</th>
+    <th>Start Rate (%)</th><th>End Rate (%)</th><th>Increase (pp)</th>
+    <th>Start Year</th><th>End Year</th>
+  </tr>
+  {% for r in rows %}
+  <tr>
+    <td>{{ r.country }}</td>
+    <td>{{ r.region_code }}</td>
+    <td>{{ r.start_rate_pct }}</td>
+    <td>{{ r.end_rate_pct }}</td>
+    <td>{{ r.rate_increase_pct }}</td>
+    <td>{{ r.start_year }}</td>
+    <td>{{ r.end_year }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

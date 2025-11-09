@@ -1,0 +1,48 @@
+{% extends "base_b.html" %}
+{% block content %}
+<div class="panel">
+  <form method="get" class="filters" style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:12px">
+    <label>Infection
+      <select name="infection">
+        {% for it in inf_types %}
+          <option value="{{ it.code }}" {% if it.code == sel_inf %}selected{% endif %}>{{ it.description }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label>Year
+      <select name="year">
+        {% for y in years %}
+          <option value="{{ y }}" {% if y == sel_year %}selected{% endif %}>{{ y }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <button type="submit">Update</button>
+  </form>
+
+  <h3>Global Infection Rate</h3>
+  <table>
+    <thead><tr><th>Infection</th><th>Year</th><th>Global Rate / 100k</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>{{ sel_inf }}</td>
+        <td>{{ sel_year }}</td>
+        <td>{{ global_rate if global_rate is not none else "—" }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top:16px">Countries Exceeding Global Rate</h3>
+  <table>
+    <thead><tr><th>Country</th><th>Infection</th><th>Year</th><th>Rate / 100k</th></tr></thead>
+    <tbody>
+      {% for r in rows %}
+        <tr><td>{{ r.country }}</td><td>{{ r.infection }}</td><td>{{ r.year }}</td><td>{{ r.rate_100k }}</td></tr>
+      {% else %}
+        <tr><td colspan="4">No countries above global rate.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

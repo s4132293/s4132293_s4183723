@@ -1,0 +1,74 @@
+{% extends "base_b.html" %}
+{% block content %}
+<div class="panel" style="margin-bottom:16px">
+  <!-- banner strip like your wireframe -->
+  <div style="height:44px; background:#e9ecef; border:1px solid #dee2e6; border-radius:10px;"></div>
+</div>
+
+<div class="panel">
+  <form method="get" class="filters" style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:12px">
+    <label>Economic Phase
+      <select name="economy">
+        {% for e in economies %}
+          <option value="{{ e.economyID }}" {% if e.economyID == sel_econ %}selected{% endif %}>{{ e.phase }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label>Infection
+      <select name="infection">
+        {% for it in inf_types %}
+          <option value="{{ it.code }}" {% if it.code == sel_inf %}selected{% endif %}>{{ it.description }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label>Year
+      <select name="year">
+        {% for y in years %}
+          <option value="{{ y }}" {% if y == sel_year %}selected{% endif %}>{{ y }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <button type="submit">Update</button>
+  </form>
+
+  <h3 style="margin:8px 0">Country Rates per 100,000</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Country</th><th>Economic Phase</th><th>Infection</th><th>Year</th>
+        <th>Cases</th><th>Population</th><th>Cases / 100k</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in rows_countries %}
+        <tr>
+          <td>{{ r.country }}</td>
+          <td>{{ r.economic_phase }}</td>
+          <td>{{ r.infection }}</td>
+          <td>{{ r.year }}</td>
+          <td>{{ r.cases if r.cases is not none else "—" }}</td>
+          <td>{{ r.population if r.population is not none else "—" }}</td>
+          <td>{{ r.cases_per_100k if r.cases_per_100k is not none else "—" }}</td>
+        </tr>
+      {% else %}
+        <tr><td colspan="7">No rows.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h3 style="margin:16px 0 8px">Summary by Economic Phase (Total Cases)</h3>
+  <table>
+    <thead><tr><th>Economic Phase</th><th>Year</th><th>Total Cases</th></tr></thead>
+    <tbody>
+      {% for s in rows_summary %}
+        <tr><td>{{ s.economic_phase }}</td><td>{{ s.year }}</td><td>{{ s.total_cases }}</td></tr>
+      {% else %}
+        <tr><td colspan="3">No data.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

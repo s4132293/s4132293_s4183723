@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Level 2A — Countries meeting ≥ 90% coverage</h2>
+
+<form method="get" class="filters">
+  Antigen:
+  <input name="antigen" value="{{ antigen }}">
+  Year:
+  <input name="year" type="number" value="{{ year }}">
+  <button type="submit">Update</button>
+</form>
+
+<h3>Table 1: Countries ≥ 90% ({{ antigen }}, {{ year }})</h3>
+<table>
+  <tr>
+    <th>Antigen</th><th>Year</th><th>Country</th><th>RegionCode</th><th>Coverage (%)</th>
+  </tr>
+  {% for r in t1[:15] %}
+  <tr>
+    <td>{{ r.antigen }}</td><td>{{ r.year }}</td>
+    <td>{{ r.country }}</td><td>{{ r.region_code }}</td>
+    <td>{{ r.coverage_pct }}</td>
+  </tr>
+  {% endfor %}
+</table>
+<p><em>Showing top 15 for brevity.</em></p>
+
+<h3>Table 2: Count by Region ({{ antigen }}, {{ year }})</h3>
+<table>
+  <tr><th>Antigen</th><th>Year</th><th>RegionCode</th><th>Countries ≥90%</th></tr>
+  {% for r in t2 %}
+  <tr>
+    <td>{{ r.antigen }}</td><td>{{ r.year }}</td>
+    <td>{{ r.region_code }}</td><td>{{ r.countries_ge90 }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

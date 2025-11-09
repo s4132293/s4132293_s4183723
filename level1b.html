@@ -1,0 +1,61 @@
+{% extends "base_b.html" %}
+{% block content %}
+
+<div class="grid" style="margin-bottom:24px">
+  <div class="tile">
+    <h3>Total Vaccinations</h3>
+    <p style="font-size:28px; margin:8px 0">{{ total_vacc if total_vacc else 0 }}</p>
+  </div>
+  <div class="tile">
+    <h3>Disease List</h3>
+    <ul style="margin:8px 0 0 16px">
+      {% for d in disease_list %}<li>{{ d }}</li>{% endfor %}
+      {% if disease_list|length == 0 %}<li>—</li>{% endif %}
+    </ul>
+  </div>
+  <div class="tile" style="grid-column:1 / -1">
+    <h3>Total Infections</h3>
+    <p style="font-size:28px; margin:8px 0">{{ total_infections if total_infections else 0 }}</p>
+  </div>
+</div>
+
+<div class="panel" style="margin-bottom:20px">
+  <h2 style="margin-top:0">Mission Statement</h2>
+  <p>{{ mission }}</p>
+  <h3>How to Use</h3>
+  <ul>
+    {% for tip in how_to_use %}<li>{{ tip }}</li>{% endfor %}
+  </ul>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h3>Personas</h3>
+    {% for p in personas %}
+      <div style="margin:10px 0">
+        <strong>{{ p.name }}</strong> — {{ p.role }}
+        {% if p.organisation %}<div>{{ p.organisation }}</div>{% endif %}
+        {% if p.goals %}<div><em>Goals:</em> {{ p.goals }}</div>{% endif %}
+        {% if p.needs %}<div><em>Needs:</em> {{ p.needs }}</div>{% endif %}
+      </div>
+      {% if not loop.last %}<hr>{% endif %}
+    {% else %}
+      <p>No personas in DB.</p>
+    {% endfor %}
+  </div>
+
+  <div class="card">
+    <h3>Team</h3>
+    <table>
+      <thead><tr><th>Name</th><th>Student ID</th></tr></thead>
+      <tbody>
+      {% for t in team %}
+        <tr><td>{{ t.full_name }}</td><td>{{ t.student_id }}</td></tr>
+      {% else %}
+        <tr><td colspan="2">No team members in DB.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
