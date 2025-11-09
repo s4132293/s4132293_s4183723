@@ -1,11 +1,156 @@
-body { font-family: system-ui, Arial, sans-serif; background:#111; color:#eee; margin:0; }
-header, footer { background:#1b1b1b; padding:16px; text-align:center; }
-main { max-width: 1000px; margin: 24px auto; padding: 0 16px; }
-h1, h2, h3 { margin: 12px 0; }
-nav a { color:#ddd; text-decoration:none; margin:0 8px; }
-table { width:100%; border-collapse: collapse; margin: 12px 0 24px; }
-th, td { border:1px solid #333; padding:8px; }
-th { background:#222; }
-form.filters { margin: 8px 0 16px; }
-input, button { padding:6px 10px; margin-right:6px; }
-em { color:#bbb; }
+/* External CSS style file */
+
+* {
+   box-sizing: border-box;
+}
+
+body {
+   font-family: Arial;
+   padding: 10px;
+   background: #f1f1f1;
+}
+
+/* Header (div) formatting */
+.header {
+   padding: 10px;
+   text-align: left;
+   background-color: #000054;
+   color: #ffffff;
+}
+
+.header h1 {
+   font-size: 50px;
+}
+
+
+/* Make the logo have a rounded edge */
+img.top-image {
+   border-radius: 50%;
+   vertical-align: middle;
+}
+
+/* CSS Layout from W3Schools: https://www.w3schools.com/css/css_templates.asp */
+/* Style the top navigation bar */
+.topnav {
+   overflow: hidden;
+   background-color: #333;
+ }
+ 
+ /* Style the topnav links */
+ .topnav a {
+   float: left;
+   display: block;
+   color: #f2f2f2;
+   text-align: center;
+   padding: 14px 16px;
+   text-decoration: none;
+ }
+ 
+ /* Change color on hover */
+ .topnav a:hover {
+   background-color: #ddd;
+   color: black;
+ }
+ 
+ /* Style the content */
+ .content {
+   background-color: #ddd;
+   padding: 10px;
+ }
+ 
+ /* Style the footer */
+ .footer {
+   background-color: #cccccc;
+   padding: 10px;
+ }
+
+ /* banner at the top */
+.hero-banner {
+    background-image: url("/header.jpg"); /* file must be in same folder */
+    background-size: cover;
+    background-position: center;
+    height: 180px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.hero-overlay {
+    background: rgba(0,0,0,0.4);
+    height: 100%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 40px;
+}
+
+.hero-overlay h1 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.hero-overlay p {
+    margin-top: 4px;
+    font-size: 14px;
+}
+
+/* filter row */
+.filter-row {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.filter-row select,
+.filter-row button {
+    padding: 4px 8px;
+}
+
+/* HOW TO USE SECTION */
+.how-to {
+    margin-top: 30px;
+    padding: 25px;
+    background: #f5f7fa;
+    border-top: 3px solid #007acc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.how-to h3 {
+    text-align: center;
+    font-size: 1.4em;
+    color: #003366;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.step {
+    width: 30%;
+    min-width: 200px;
+    padding: 10px;
+}
+
+.step-icon {
+    display: block;
+    font-size: 2em;
+    margin-bottom: 8px;
+}
+
+/* FOOTER */
+.footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 0.95em;
+}
